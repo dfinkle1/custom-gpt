@@ -1,0 +1,110 @@
+.Chatbox-container {
+  min-width: 600px;
+  min-height: 480px;
+  max-width: 1200px;
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: green;
+}
+.message-left {
+  box-shadow: inset -2px 0 2px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 300px;
+  padding: 20px;
+  background-color: #e7f8ff;
+  border-right: 2px solid;
+  border-color: #e7f8ff;
+}
+
+.message-right {
+  padding: 20px;
+  display: flex;
+  width: calc(100% - 300px);
+  flex-direction: column;
+  background-color: white;
+}
+.home-column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100px;
+  flex-grow: 0.05;
+}
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 1; /* Take up available space */
+  /* Additional styles */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+.row {
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header {
+  padding: 14px 20px;
+  font-size: 20px;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 50vw;
+}
+
+.send-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 0; /* Take up available space */
+  /* Additional styles */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+.question {
+  height: 100px;
+  width: 500px;
+  border: 0px;
+  resize: none;
+}
+
+.msg-answer {
+  background-color: #007aff; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 15px; /* Padding around the text */
+  border-radius: 20px; /* Rounded corners */
+  max-width: 80%; /* Maximum width for the message */
+  align-self: flex-end; /* Align message to the right side */
+  margin-bottom: 10px; /* Spacing between messages */
+  /* Additional styles */
+}
+
+.msg-question {
+  background-color: gray;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 80%;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
