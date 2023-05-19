@@ -10,7 +10,7 @@ async function fetchChatCompletion(question) {
   }
 
   if (question.trim().length === 0) {
-    throw new Error("Please enter a valid animal.");
+    throw new Error("Please enter a valid prompt.");
   }
 
   try {
@@ -18,8 +18,11 @@ async function fetchChatCompletion(question) {
       model: "gpt-3.5-turbo",
       messages: [
         {
-          role: "assistant",
-          content: `You are a fitness instructor. With the main goal of providing strength training and avoiding workouts with high injury rates. Provide 3 workouts, with rep ranges and information on intensity`,
+          role: "system",
+          content: `You are a fitness instructor. With
+           the main goal of providing strength training 
+           and avoiding workouts with high injury rates. 
+           Provide 3 different workouts, include rep ranges and information on intensity`,
         },
         { role: "user", content: generatePrompt(question) },
       ],

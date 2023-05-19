@@ -20,13 +20,13 @@ const Message = () => {
 
   return (
     <>
-      <div className="message-left">Messages</div>
-      <div className="message-right">
-        <div className="home-column">
-          <div className="row header">
-            myFitness Bot
-            <div>{answers.length} messages</div>
-          </div>
+      <div className="column-left">Messages</div>
+      <div className="column-right">
+        <div className="header">
+          <p>
+            myFitness Bot <br></br>
+            {answers.length} messages
+          </p>
         </div>
         <div className="results">
           {answers.map((answer, idx) => (
