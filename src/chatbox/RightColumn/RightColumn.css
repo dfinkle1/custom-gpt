@@ -1,0 +1,43 @@
+.header {
+  padding: 14px 20px;
+  font-size: 20px;
+  font-weight: bolder;
+  overflow: hidden;
+  height: 7%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Set the width to 100% to span across the parent container */
+  border-bottom: 1px solid black; /* Set the border properties as needed */
+  background-color: #d3d3d34f;
+}
+
+.results {
+  margin-top: 9.5%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  margin-bottom: 12px;
+}
+.msg-question {
+  background-color: #007aff; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 15px; /* Padding around the text */
+  border-radius: 20px; /* Rounded corners */
+  max-width: 80%; /* Maximum width for the message */
+  align-self: flex-end; /* Align message to the right side */
+  margin-bottom: 10px; /* Spacing between messages */
+  /* Additional styles */
+}
+
+.msg-answer {
+  background-color: gray;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 80%;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}

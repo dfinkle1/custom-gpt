@@ -1,5 +1,5 @@
 import React from "react";
-import Chatbox from "./chatbox/Chat";
+import Chatbox from "./chatbox/Chatbox";
 import "./App.css";
 // import dotenv from 'dotenv'
 // require("dotenv").config();
