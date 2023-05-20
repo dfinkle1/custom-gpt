@@ -19,16 +19,13 @@ async function fetchChatCompletion(question) {
       messages: [
         {
           role: "system",
-          content: `You are a fitness instructor. With
-           the main goal of providing strength training 
-           and avoiding workouts with high injury rates. 
-           Provide 3 different workouts, include rep ranges and information on intensity`,
+          content: `Provide 3 different workouts based on the muscle group I send. Include rep range, and intensity. Prioritize strength training`,
         },
         { role: "user", content: generatePrompt(question) },
       ],
       temperature: 0.6,
     });
-
+    console.log(completion);
     return completion.data.choices[0].message.content;
   } catch (error) {
     if (error.response) {
@@ -42,7 +39,7 @@ async function fetchChatCompletion(question) {
 function generatePrompt(question) {
   const capitalized =
     question[0].toUpperCase() + question.slice(1).toLowerCase();
-  return `What is a good workout for your ${capitalized} muscle? Keep this very short, please.`;
+  return `What is a good workout for your ${capitalized} muscle? 3 different workouts.`;
 }
 
 export default fetchChatCompletion;

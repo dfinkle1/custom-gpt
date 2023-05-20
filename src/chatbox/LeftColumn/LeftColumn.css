@@ -1,11 +1,5 @@
-.column-left {
-  box-shadow: inset -2px 0 2px 0 rgba(0, 0, 0, 0.05);
+.left-header {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 300px;
-  padding: 20px;
-  background-color: #e7f8ff;
-  border-right: 2px solid;
-  border-color: #e7f8ff;
+  padding: 14px 20px;
+  justify-content: center;
 }

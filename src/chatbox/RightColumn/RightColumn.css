@@ -8,8 +8,8 @@
   top: 0;
   left: 0;
   width: 100%; /* Set the width to 100% to span across the parent container */
-  border-bottom: 1px solid black; /* Set the border properties as needed */
-  background-color: #d3d3d34f;
+  /* border-bottom: 1px solid black; Set the border properties as needed */
+  background-color: #ecefef;
 }
 
 .results {
@@ -19,7 +19,8 @@
 
   padding: 10px;
   overflow-y: auto; /* Add scrollbar if content overflows */
-  margin-bottom: 12px;
+  scroll-behavior: smooth;
+  scroll-padding-bottom: 100px;
 }
 .msg-question {
   background-color: #007aff; /* Blue background color */
@@ -33,8 +34,8 @@
 }
 
 .msg-answer {
-  background-color: gray;
-  color: white;
+  background-color: #dadada;
+  color: #424040;
   padding: 10px 15px;
   border-radius: 20px;
   max-width: 80%;

@@ -24,7 +24,7 @@ const Message = () => {
       <div className="column-right">
         <div className="header">
           <p>
-            myFitness Bot <br></br>
+            MyFitness Bot <br></br>
             {answers.length} messages
           </p>
         </div>

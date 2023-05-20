@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Chat from "./Chat";
 import "./RightColumn.css";
 
 const RightColumn = ({ questions, answers }) => {
@@ -10,18 +11,7 @@ const RightColumn = ({ questions, answers }) => {
           {answers.length} messages
         </p>
       </div>
-      <div className="results">
-        {answers.map((answer, idx) => (
-          <React.Fragment key={`msg-${idx}`}>
-            <div className="msg-question" key={`question-${idx}`}>
-              {questions[idx]}
-            </div>
-            <div className="msg-answer" key={`answer-${idx}`}>
-              {answer}
-            </div>
-          </React.Fragment>
-        ))}
-      </div>
+      <Chat questions={questions} answers={answers} />
     </>
   );
 };

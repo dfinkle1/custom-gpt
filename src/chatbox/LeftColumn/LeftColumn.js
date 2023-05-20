@@ -1,10 +1,13 @@
 import React from "react";
 import "./LeftColumn.css";
 
-const LeftColumn = () => {
+const LeftColumn = ({ addChatRoom }) => {
   return (
     <>
-      <div className="column-left">Messages</div>
+      <div className="left-header">
+        <h1>Messages</h1>
+      </div>
+      <button onClick={addChatRoom}>Add Room</button>
     </>
   );
 };
