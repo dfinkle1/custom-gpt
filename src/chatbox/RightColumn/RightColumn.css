@@ -16,7 +16,8 @@
   margin-top: 9.5%;
   display: flex;
   flex-direction: column;
-
+  justify-content: flex-end;
+  height: 100%;
   padding: 10px;
   overflow-y: auto; /* Add scrollbar if content overflows */
   scroll-behavior: smooth;

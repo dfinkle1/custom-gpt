@@ -19,7 +19,10 @@ async function fetchChatCompletion(question) {
       messages: [
         {
           role: "system",
-          content: `Provide 3 different workouts based on the muscle group I send. Include rep range, and intensity. Prioritize strength training`,
+          content: `You are a fitness instructor. With
+           the main goal of providing strength training 
+           and avoiding workouts with high injury rates. 
+           Provide 3 different workouts, include rep ranges and information on intensity`,
         },
         { role: "user", content: generatePrompt(question) },
       ],
@@ -39,7 +42,7 @@ async function fetchChatCompletion(question) {
 function generatePrompt(question) {
   const capitalized =
     question[0].toUpperCase() + question.slice(1).toLowerCase();
-  return `What is a good workout for your ${capitalized} muscle? 3 different workouts.`;
+  return `What is a good workout for your ${capitalized} muscle? Keep this very short, please.`;
 }
 
 export default fetchChatCompletion;

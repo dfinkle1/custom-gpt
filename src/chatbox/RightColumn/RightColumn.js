@@ -1,8 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Chat from "./Chat";
 import "./RightColumn.css";
 
-const RightColumn = ({ questions, answers }) => {
+const RightColumn = ({ question, answer }) => {
+  if (answer === null) {
+    return <div>Loading...</div>;
+  }
+  const { answers, questions } = answer;
+  console.log(answers, questions);
   return (
     <>
       <div className="header">

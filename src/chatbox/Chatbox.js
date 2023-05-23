@@ -12,13 +12,41 @@ const Chatbox = () => {
   const [answers, setAnswer] = useLocalStorage("messages", []);
   const [questions, setQuestions] = useLocalStorage("questions", []);
   const [chatRooms, setChatRooms] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
 
+  //gather chatroom information on mount from local storage
   useEffect(() => {
     const storedChatRooms = localStorage.getItem("chatRooms");
     if (storedChatRooms) {
       setChatRooms(JSON.parse(storedChatRooms));
     }
+    const current = localStorage.getItem("currentChat");
+    if (current) {
+      setCurrentChat(JSON.parse(current));
+    }
   }, []);
+
+  //adds a new chatRoom to localStorage if the state changes on chatRooms
+  useEffect(() => {
+    localStorage.setItem("chatRooms", JSON.stringify(chatRooms));
+  }, [chatRooms]);
+
+  //
+  useEffect(() => {
+    localStorage.setItem("currentChat", JSON.stringify(currentChat));
+  }, [currentChat]);
+
+  // handleCurrent  This creates a focused chatRoom so the app knows what chat to display
+  const handleCurrent = (current) => {
+    console.log(current);
+    const selectedChat = chatRooms.find((chat) => chat.id === current);
+    const { questions, answers } = selectedChat;
+    setCurrentChat({
+      id: current,
+      questions: [...questions],
+      answers: [...answers],
+    });
+  };
 
   // Requests data from SubmitButton form, and pass it into api request.
   // take the response and set the question and the fetched answer to localStorage
@@ -26,33 +54,56 @@ const Chatbox = () => {
   const handleSubmission = async (question) => {
     try {
       const response = await fetchChatCompletion(question);
-      setAnswer((oldMessages) => [...oldMessages, response]);
-      setQuestions((oldQuestions) => [...oldQuestions, question]);
+      setCurrentChat((prevChat) => ({
+        ...prevChat,
+        questions: [...prevChat.questions, question],
+        answers: [...prevChat.answers, response],
+      }));
+
+      setChatRooms((prevChatRooms) => {
+        const updatedChatRooms = [...prevChatRooms];
+        const chatRoomIndex = chatRooms.findIndex(
+          (chat) => chat.id === currentChat.id
+        );
+        if (chatRoomIndex !== -1) {
+          const updatedChatRoom = {
+            ...updatedChatRooms[chatRoomIndex],
+            questions: [...updatedChatRooms[chatRoomIndex].questions, question],
+            answers: [...updatedChatRooms[chatRoomIndex].answers, response],
+          };
+          updatedChatRoom[chatRoomIndex] = updatedChatRoom;
+        }
+        console.log(chatRooms);
+        return updatedChatRooms;
+      });
     } catch (error) {
       console.error(error);
     }
   };
-
+  // A button to add a new
   const addChatRoom = () => {
     const newChat = {
       id: uuidv4(),
-      messages: [],
+      questions: [],
+      answers: [],
     };
     const updatedChatRooms = [...chatRooms, newChat];
     setChatRooms(updatedChatRooms);
     localStorage.setItem("chatRooms", JSON.stringify(updatedChatRooms));
   };
-  useEffect(() => {
-    localStorage.setItem("chatRooms", JSON.stringify(chatRooms));
-  }, [chatRooms]);
 
   return (
     <div className="Chatbox-container">
       <div className="column-left">
-        <LeftColumn addChatRoom={addChatRoom} />
+        <LeftColumn
+          addChatRoom={addChatRoom}
+          chats={chatRooms}
+          onChatClick={handleCurrent}
+          currentChat={currentChat}
+        />
       </div>
       <div className="column-right">
-        <RightColumn answers={answers} questions={questions} />
+        <RightColumn answer={currentChat} question={currentChat} />
         <SubmitForm onSubmit={handleSubmission} />
       </div>
     </div>
