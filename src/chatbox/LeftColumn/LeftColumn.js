@@ -41,7 +41,11 @@ const LeftColumn = ({ addChatRoom, chats, onChatClick }) => {
       ))}
 
       <div className="left-column-footer">
-        <a href="https://github.com/dfinkle1/custom-gpt" target="_blank">
+        <a
+          href="https://github.com/dfinkle1/custom-gpt"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FontAwesomeIcon
             icon={icon({ name: "github", style: "brands" })}
             size="xl"

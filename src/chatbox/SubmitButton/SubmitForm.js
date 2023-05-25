@@ -35,6 +35,12 @@ const Submit = ({ onSubmit }) => {
       <div className="submit-form">
         <form className="form-content" onSubmit={handleSubmit}>
           <div className="submit-wrapper">
+            <select>
+              <option value="Default">Default AI Chat</option>
+              <option value="workout">Pick a muscle to workout</option>
+              <option value="poem">Choose a poem topic</option>
+              <option value="randomJoke">Tell me a random joke</option>
+            </select>
             <textarea
               className="text-box"
               name="question"
