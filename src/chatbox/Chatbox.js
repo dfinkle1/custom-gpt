@@ -2,27 +2,29 @@ import React, { useEffect, useState } from "react";
 import RightColumn from "./RightColumn/RightColumn";
 import LeftColumn from "./LeftColumn/LeftColumn";
 import SubmitForm from "./SubmitButton/SubmitForm";
-import useLocalStorage from "../hooks/localStorage";
 import fetchChatCompletion from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 import "./Chatbox.css";
 
 const Chatbox = () => {
-  // use localStorage hook. Converts JSON to array
-  const [answers, setAnswer] = useLocalStorage("messages", []);
-  const [questions, setQuestions] = useLocalStorage("questions", []);
+  let tempChat = { id: 1, title: "new chat", questions: [], answers: [] };
+  // parses localStorage, and sets all chatRooms into an array
   const [chatRooms, setChatRooms] = useState([]);
+  // on click method is used to set the current chat being used. User clicks a chat, and thats the main
   const [currentChat, setCurrentChat] = useState(null);
 
   //gather chatroom information on mount from local storage
   useEffect(() => {
-    const storedChatRooms = localStorage.getItem("chatRooms");
-    if (storedChatRooms) {
-      setChatRooms(JSON.parse(storedChatRooms));
-    }
     const current = localStorage.getItem("currentChat");
     if (current) {
       setCurrentChat(JSON.parse(current));
+    } else {
+      setCurrentChat(tempChat);
+      setChatRooms([tempChat]);
+    }
+    const storedChatRooms = localStorage.getItem("chatRooms");
+    if (storedChatRooms) {
+      setChatRooms(JSON.parse(storedChatRooms));
     }
   }, []);
 
@@ -59,7 +61,7 @@ const Chatbox = () => {
         questions: [...prevChat.questions, question],
         answers: [...prevChat.answers, response],
       }));
-
+      // updates all chatrooms with the new information of the one we just asked a question to
       setChatRooms((prevChatRooms) => {
         const updatedChatRooms = [...prevChatRooms];
         const chatRoomIndex = chatRooms.findIndex(
@@ -71,16 +73,16 @@ const Chatbox = () => {
             questions: [...updatedChatRooms[chatRoomIndex].questions, question],
             answers: [...updatedChatRooms[chatRoomIndex].answers, response],
           };
-          updatedChatRoom[chatRoomIndex] = updatedChatRoom;
+          updatedChatRooms[chatRoomIndex] = updatedChatRoom;
         }
-        console.log(chatRooms);
+
         return updatedChatRooms;
       });
     } catch (error) {
       console.error(error);
     }
   };
-  // A button to add a new
+  // A button to add a new chat room.
   const addChatRoom = () => {
     const newChat = {
       id: uuidv4(),

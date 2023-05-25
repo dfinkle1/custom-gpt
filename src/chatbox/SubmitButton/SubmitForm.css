@@ -34,3 +34,8 @@
 .send-btn:hover {
   background-color: #13e100;
 }
+
+textarea {
+  border: none;
+  outline: none;
+}

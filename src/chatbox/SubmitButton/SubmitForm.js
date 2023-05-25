@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SubmitForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const Submit = ({ onSubmit }) => {
   const [question, setQuestion] = useState("");
@@ -51,7 +51,7 @@ const Submit = ({ onSubmit }) => {
                 <span>Loading...</span>
               ) : (
                 <FontAwesomeIcon
-                  icon={faPaperPlane}
+                  icon={icon({ name: "paper-Plane" })}
                   size="xl"
                   style={{ color: "#3881ff" }}
                 />
