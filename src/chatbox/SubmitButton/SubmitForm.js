@@ -5,6 +5,7 @@ import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const Submit = ({ onSubmit }) => {
   const [question, setQuestion] = useState("");
+  const [topic, setPrompt] = useState("");
   // If sending a message remove the send button and show loading.
   const [loading, setLoading] = useState(false);
 
@@ -14,11 +15,12 @@ const Submit = ({ onSubmit }) => {
     event.preventDefault();
     try {
       setLoading(true);
-      await onSubmit(question);
+      await onSubmit(topic, question);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setQuestion("");
     }
   }
 
@@ -35,11 +37,29 @@ const Submit = ({ onSubmit }) => {
       <div className="submit-form">
         <form className="form-content" onSubmit={handleSubmit}>
           <div className="submit-wrapper">
-            <select>
-              <option value="Default">Default AI Chat</option>
-              <option value="workout">Pick a muscle to workout</option>
-              <option value="poem">Choose a poem topic</option>
-              <option value="randomJoke">Tell me a random joke</option>
+            <select
+              className="custom-select"
+              onChange={(e) => (
+                setPrompt(e.target.value), console.log(e.target.value)
+              )}
+            >
+              <option
+                className="option"
+                value={`You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible. Knowledge cutoff: {knowledge_cutoff} Current date: {current_date}`}
+              >
+                Ask Anything!
+              </option>
+              <option value="You are a fitness trainer. Your main goal is providing strength training and avoiding workouts with high injury rates. Provide 3 different workouts, include rep ranges and information on intensity">
+                Workout Assistance: Type out a muscle
+                (back,biceps,chest,arms,legs,quads,etc...)
+              </option>
+              <option value="I want you to tell me a joke about pokemon">
+                Get a Pokemon joke!
+              </option>
+              <option value="I want you to act as a personal chef and suggest a healthy meal plan for the week. The user will either give you a calorie goal, or their body specifics">
+                Get a meal plan for the week! (Provide Calorie Range. Or submit
+                Weight,height,gender, goal(gain weight or lose weight) )
+              </option>
             </select>
             <textarea
               className="text-box"

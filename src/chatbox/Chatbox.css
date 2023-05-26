@@ -8,8 +8,8 @@
   display: flex;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid;
-  border-color: green;
+  border: 2px solid;
+  border-color: rgb(131 0 255);
 }
 .column-right {
   padding: 20px 20px 20px 10px;

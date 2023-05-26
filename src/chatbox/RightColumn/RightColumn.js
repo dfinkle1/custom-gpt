@@ -10,11 +10,11 @@ const RightColumn = ({ question, answer }) => {
   console.log(answers, questions);
   return (
     <>
-      <div className="header">
-        <p>
+      <div className="header-container">
+        <div className="header">
           myFitness Bot <br></br>
           {answers.length} messages
-        </p>
+        </div>
       </div>
       <Chat questions={questions} answers={answers} />
     </>

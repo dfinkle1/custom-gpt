@@ -1,5 +1,9 @@
+.header-container {
+  position: static;
+  height: 10%;
+}
 .header {
-  padding: 14px 20px;
+  padding: 15px 0px 0px 10px;
   font-size: 20px;
   font-weight: bolder;
   overflow: hidden;
@@ -13,11 +17,9 @@
 }
 
 .results {
-  margin-top: 9.5%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
+  flex-direction: column-reverse;
+  flex-grow: 8;
   padding: 10px;
   overflow-y: auto; /* Add scrollbar if content overflows */
   scroll-behavior: smooth;

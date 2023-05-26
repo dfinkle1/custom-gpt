@@ -10,12 +10,6 @@
 .form-content {
   display: contents;
 }
-.text-box {
-  height: 100%;
-  width: 100%;
-  border: 0px;
-  resize: none;
-}
 
 .submit-wrapper {
   height: 100%;
@@ -23,6 +17,19 @@
   display: flex;
   align-items: center;
 }
+
+.custom-select {
+  border-radius: 10px;
+  width: 30%;
+  border: 1px solid rgb(154, 230, 255);
+}
+.text-box {
+  height: 100%;
+  width: 100%;
+  border: 0px;
+  resize: none;
+}
+
 .send-btn {
   background: transparent;
   border: none;

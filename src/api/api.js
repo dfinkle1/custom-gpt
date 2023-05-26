@@ -4,7 +4,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function fetchChatCompletion(question) {
+async function fetchChatCompletion(topic, question) {
   if (!configuration.apiKey) {
     throw new Error("OpenAI API key not configured.");
   }
@@ -19,10 +19,7 @@ async function fetchChatCompletion(question) {
       messages: [
         {
           role: "system",
-          content: `You are a fitness instructor. With
-           the main goal of providing strength training 
-           and avoiding workouts with high injury rates. 
-           Provide 3 different workouts, include rep ranges and information on intensity`,
+          content: generateContent(topic),
         },
         { role: "user", content: generatePrompt(question) },
       ],
@@ -39,10 +36,14 @@ async function fetchChatCompletion(question) {
   }
 }
 
+function generateContent(topic) {
+  return `${topic}`;
+}
+
 function generatePrompt(question) {
   const capitalized =
     question[0].toUpperCase() + question.slice(1).toLowerCase();
-  return `What is a good workout for your ${capitalized} muscle? Keep this very short, please.`;
+  return `${capitalized}`;
 }
 
 export default fetchChatCompletion;

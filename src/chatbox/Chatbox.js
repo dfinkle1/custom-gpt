@@ -53,9 +53,9 @@ const Chatbox = () => {
   // Requests data from SubmitButton form, and pass it into api request.
   // take the response and set the question and the fetched answer to localStorage
   //we then pass the answers/questions into right column to display info
-  const handleSubmission = async (question) => {
+  const handleSubmission = async (topic, question) => {
     try {
-      const response = await fetchChatCompletion(question);
+      const response = await fetchChatCompletion(topic, question);
       setCurrentChat((prevChat) => ({
         ...prevChat,
         questions: [...prevChat.questions, question],
