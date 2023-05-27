@@ -39,9 +39,7 @@ const Submit = ({ onSubmit }) => {
           <div className="submit-wrapper">
             <select
               className="custom-select"
-              onChange={(e) => (
-                setPrompt(e.target.value), console.log(e.target.value)
-              )}
+              onChange={(e) => setPrompt(e.target.value)}
             >
               <option
                 className="option"

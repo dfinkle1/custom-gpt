@@ -59,7 +59,7 @@ Feel free to customize the app according to your requirements and preferences.
 Here are some screenshots showcasing the Custom-GPT App:
 
 ![Screenshot 1](screenshots/screenshot1.png)
-_Caption for Screenshot 1_
+_CustomGPT interface_
 
 ![Screenshot 2](screenshots/screenshot2.png)
 _Caption for Screenshot 2_

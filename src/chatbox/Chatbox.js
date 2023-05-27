@@ -7,10 +7,16 @@ import { v4 as uuidv4 } from "uuid";
 import "./Chatbox.css";
 
 const Chatbox = () => {
-  let tempChat = { id: 1, title: "new chat", questions: [], answers: [] };
+  const tempChat = {
+    id: uuidv4(),
+    title: "new chat",
+    questions: [],
+    answers: [],
+  };
   // parses localStorage, and sets all chatRooms into an array
   const [chatRooms, setChatRooms] = useState([]);
-  // on click method is used to set the current chat being used. User clicks a chat, and thats the main
+  // on click method is used to set the current chat being used. User clicks a chat
+  // , and thats the main chat on screen.
   const [currentChat, setCurrentChat] = useState(null);
 
   //gather chatroom information on mount from local storage
@@ -38,13 +44,14 @@ const Chatbox = () => {
     localStorage.setItem("currentChat", JSON.stringify(currentChat));
   }, [currentChat]);
 
-  // handleCurrent  This creates a focused chatRoom so the app knows what chat to display
+  // handleCurrent  onClick method to set the currentChatRoom
   const handleCurrent = (current) => {
     console.log(current);
     const selectedChat = chatRooms.find((chat) => chat.id === current);
-    const { questions, answers } = selectedChat;
+    const { questions, answers, title } = selectedChat;
     setCurrentChat({
       id: current,
+      title: title,
       questions: [...questions],
       answers: [...answers],
     });
@@ -58,6 +65,7 @@ const Chatbox = () => {
       const response = await fetchChatCompletion(topic, question);
       setCurrentChat((prevChat) => ({
         ...prevChat,
+        title: prevChat.title,
         questions: [...prevChat.questions, question],
         answers: [...prevChat.answers, response],
       }));
@@ -86,12 +94,19 @@ const Chatbox = () => {
   const addChatRoom = () => {
     const newChat = {
       id: uuidv4(),
+      title: "new chat",
       questions: [],
       answers: [],
     };
     const updatedChatRooms = [...chatRooms, newChat];
     setChatRooms(updatedChatRooms);
     localStorage.setItem("chatRooms", JSON.stringify(updatedChatRooms));
+  };
+
+  const deleteChat = (chatId) => {
+    console.log(chatId);
+    const newChatRooms = chatRooms.filter((chat) => chat.id !== chatId);
+    setChatRooms(newChatRooms);
   };
 
   return (
@@ -102,10 +117,11 @@ const Chatbox = () => {
           chats={chatRooms}
           onChatClick={handleCurrent}
           currentChat={currentChat}
+          deleteChat={deleteChat}
         />
       </div>
       <div className="column-right">
-        <RightColumn answer={currentChat} question={currentChat} />
+        <RightColumn currentChat={currentChat} />
         <SubmitForm onSubmit={handleSubmission} />
       </div>
     </div>

@@ -29,6 +29,39 @@
   align-items: center;
   background-color: white;
   border-radius: 20px;
+  justify-content: space-between;
+}
+
+.left-chat {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.chat-trash {
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+  color: red;
+  padding: 10px;
+  cursor: pointer;
+}
+.chat-delete {
+  background-color: transparent;
+  border: none;
+  margin-right: 5px;
+  color: green;
+  padding: 6px;
+  cursor: pointer;
+}
+.chat-cancel {
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+  color: red;
+  padding: 6px;
+  cursor: pointer;
 }
 
 .add-chat {
