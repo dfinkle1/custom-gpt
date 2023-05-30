@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SettingsModal.css";
 
 const SettingsModal = ({ isOpen, handleModal }) => {
   const [inputValue, setInputValue] = useState("");
+  const [apiKey, setApiKey] = useState(null);
+
+  useEffect(() => {
+    const apiKey = localStorage.getItem("apiKey");
+    if (apiKey) {
+      setApiKey(apiKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("apiKey", apiKey);
+  }, [apiKey]);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("apiKey", inputValue);
+    setApiKey(inputValue);
   };
   if (!isOpen) {
     return null;

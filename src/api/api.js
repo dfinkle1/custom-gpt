@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = localStorage.getItem("apiKey");
+const apiKeyLocal = localStorage.getItem("apiKey");
 const configuration = new Configuration({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY || apiKey,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY || apiKeyLocal,
 });
 const openai = new OpenAIApi(configuration);
 
