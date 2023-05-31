@@ -11,7 +11,7 @@ const RightHeader = ({ totalMessages }) => {
     <>
       <div className="header-container">
         <div className="header">
-          myFitness Bot <br></br>
+          myCustom Bot <br></br>
           {answers.length} messages
         </div>
       </div>

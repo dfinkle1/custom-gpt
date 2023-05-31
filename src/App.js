@@ -9,7 +9,6 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Still in development</h1>
       <Chatbox />
     </>
   );
