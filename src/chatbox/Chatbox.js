@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RightColumn from "./RightColumn/RightColumn";
 import LeftColumn from "./LeftColumn/LeftColumn";
-import SubmitForm from "./SubmitButton/SubmitForm";
+import SubmitForm from "./PromptColumn/SubmitForm";
 import fetchChatCompletion from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 import "./Chatbox.css";
