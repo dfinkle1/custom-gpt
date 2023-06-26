@@ -10,7 +10,7 @@ const RightHeader = ({ totalMessages }) => {
   return (
     <>
       <div className="header-container">
-        <div className="header">
+        <div className="right-header">
           myCustom Bot <br></br>
           {answers.length} messages
         </div>

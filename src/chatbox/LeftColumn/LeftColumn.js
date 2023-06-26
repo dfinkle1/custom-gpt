@@ -13,7 +13,6 @@ const LeftColumn = ({ addChatRoom, chats, onChatClick, deleteChat }) => {
 
   return (
     <>
-      <span>In development</span>
       <SettingsModal isOpen={isSettingsModalOpen} handleModal={handleModal} />
       <LeftColumnHeader addChatRoom={addChatRoom} />
       <LeftColumnChats
